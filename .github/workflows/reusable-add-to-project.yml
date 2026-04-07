@@ -37,6 +37,7 @@ jobs:
       SOLUTION_FIELD: "PVTSSF_lADOCxeiOM4BR2KZzg_jXuY"
       PRIORITY_FIELD: "PVTSSF_lADOCxeiOM4BR2KZzg_jXvs"
       CATEGORY_FIELD: "PVTSSF_lADOCxeiOM4BR2KZzg_jXxA"
+      STATUS_FIELD: "PVTSSF_lADOCxeiOM4BR2KZzg_jXr8"
       ITEM_ID: ${{ needs.add-to-project.outputs.item_id }}
       ID_FIELD: "PVTF_lADOCxeiOM4BR2KZzhADImQ"
     steps:
@@ -45,6 +46,11 @@ jobs:
           NUMBER=${{ github.event.issue.number }}
           gh project item-edit --project-id "$PROJECT_ID" --id "$ITEM_ID" \
             --field-id "$ID_FIELD" --text "${{ inputs.id-prefix }}-$NUMBER"
+
+      - name: Set Status to Todo
+        run: |
+          gh project item-edit --project-id "$PROJECT_ID" --id "$ITEM_ID" \
+            --field-id "$STATUS_FIELD" --single-select-option-id "f75ad846"
 
       - name: Set Solution field
         run: |
