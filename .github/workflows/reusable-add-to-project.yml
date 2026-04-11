@@ -63,7 +63,7 @@ jobs:
             --field-id "$STATUS_FIELD" --single-select-option-id "f75ad846"
 
       - name: Set Solution field
-        if: github.event_name == 'issues' && steps.add.outputs.itemId != ''
+        if: github.event_name == 'issues' && steps.add.outputs.itemId != '' && inputs.solution-option-id != ''
         env:
           PROJECT_ID: "PVT_kwDOCxeiOM4BR2KZ"
           SOLUTION_FIELD: "PVTSSF_lADOCxeiOM4BR2KZzg_jXuY"
